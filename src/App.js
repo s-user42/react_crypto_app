@@ -28,8 +28,8 @@ function App() {
 
                 <Routes>
 
-                    <Route path='/' Component={Homepage} />
-                    <Route path='/coins/:id' Component={CoinPage} />
+                    <Route path='/react_crypto_app/' Component={Homepage} />
+                    <Route path='/react_crypto_app/coins/:id' Component={CoinPage} />
 
                 </Routes>
             </div>

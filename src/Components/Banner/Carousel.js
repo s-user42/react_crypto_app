@@ -50,7 +50,7 @@ const Carousel = () => {
         return (
             <Link
             className={classes.carouselItem}
-            to={`/coins/${coin.id}`}>
+            to={`/react_crypto_app/coins/${coin.id}`}>
                 <img src={coin?.image} alt={coin.name} height="80" style={{marginBottom: 10}} />
                 <span> 
                     {coin?.symbol} &nbsp;

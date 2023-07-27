@@ -41,7 +41,7 @@ const Header = () => {
         <AppBar color="transparent" position="static">
             <Container> 
                 <Toolbar>
-                    <Typography onClick={() => navigate("/")} className={classes.title}>Crypto Hunter</Typography>
+                    <Typography onClick={() => navigate("/react_crypto_app")} className={classes.title}>Crypto Hunter</Typography>
 
                     <Select 
                     value={currency}

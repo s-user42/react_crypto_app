@@ -2,6 +2,7 @@
   "name": "crypto-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://s-user42.github.io/react_crypto_app",
   "dependencies": {
     "@material-ui/core": "^4.12.4",
     "@material-ui/lab": "^4.0.0-alpha.61",
@@ -10,6 +11,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
     "chart.js": "^4.3.2",
+    "gh-pages": "^5.0.0",
     "html-react-parser": "^4.2.0",
     "react": "^18.2.0",
     "react-alice-carousel": "^2.7.1",
@@ -21,6 +23,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

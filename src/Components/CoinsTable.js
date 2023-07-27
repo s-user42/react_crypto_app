@@ -37,7 +37,7 @@ const CoinsTable = () => {
     });
     
     const fetchCoins = async () => {
-        // setLoading(true);
+        setLoading(true);
         const {data} = await axios.get(CoinList(currency));
         setCoins(data);
         setLoading(false);
@@ -105,7 +105,7 @@ const CoinsTable = () => {
 
                                         return (
                                             <TableRow
-                                            onClick = {() => navigate(`/coins/${row.id}`)}
+                                            onClick = {() => navigate(`/react_crypto_app/coins/${row.id}`)}
                                             style = {classes.row}
                                             key = {row.name}
                                             >

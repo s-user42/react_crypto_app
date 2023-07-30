@@ -1,5 +1,4 @@
-import { makeStyles, Container, Typography} from "@material-ui/core";
-
+import { makeStyles, Container, Typography } from "@material-ui/core";
 import Carousel from "./Carousel";
 
 const useStyles = makeStyles((theme) => ({

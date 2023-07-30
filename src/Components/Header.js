@@ -7,7 +7,7 @@ import React from "react";
 const useStyles = makeStyles(() => ({
     title: {
         flex: 1,
-        color: 'gold',
+        color: '#0D71FB',
         fontFamily: 'Montserrat',
         fontWeight: 'bold',
         cursor: 'pointer',

@@ -10,6 +10,26 @@ export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+const useStyles = makeStyles({
+    row: {
+      backgroundColor: "#16171a",
+      cursor: "pointer",
+      "&:hover": {
+        backgroundColor: "#131111",
+      },
+      fontFamily: "Montserrat",
+    },
+    pagination: {
+      "& .MuiPaginationItem-root": {
+        margin: '10px',
+        "@media (max-width: 540px)" : {
+            margin: -2,
+        }, 
+        width: '15px'
+      },
+    },
+});
+
 const CoinsTable = () => {
     const [coins, setCoins] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -20,21 +40,8 @@ const CoinsTable = () => {
 
     const { currency, symbol } = CryptoState();
 
-    const classes = ({
-        row: {
-          backgroundColor: "#16171a",
-          cursor: "pointer",
-          "&:hover": {
-            backgroundColor: "#131111",
-          },
-          fontFamily: "Montserrat",
-        },
-        pagination: {
-          "& .MuiPaginationItem-root": {
-            color: "gold",
-          },
-        },
-    });
+    
+    const classes = useStyles();
     
     const fetchCoins = async () => {
         setLoading(true);
@@ -83,7 +90,7 @@ const CoinsTable = () => {
                             <LinearProgress/>
                         ) : (
                             <Table>
-                                <TableHead style={{backgroundColor: "#EEBC1D"}}>
+                                <TableHead style={{backgroundColor: "#0D71FB"}}>
                                     <TableRow>
                                         {["Coin", "Price", "24h Change", "Market Cap"].map((head) => (
                                             <TableCell
@@ -106,7 +113,7 @@ const CoinsTable = () => {
                                         return (
                                             <TableRow
                                             onClick = {() => navigate(`/react_crypto_app/coins/${row.id}`)}
-                                            style = {classes.row}
+                                            className = {classes.row}
                                             key = {row.name}
                                             >
                                                 <TableCell
@@ -163,7 +170,9 @@ const CoinsTable = () => {
                 </TableContainer>
 
                 <Pagination
-                count={(filterSearch()?.length / 10).toFixed(0)}
+                // count={(filterSearch()?.length / 10).toFixed(0)}
+                className={classes.pagination}
+                count = {10}
                 style={{
                     padding: 20,
                     width: "100%",
@@ -171,6 +180,7 @@ const CoinsTable = () => {
                     justifyContent: "center",
                     color: "#EEBC1D"
                 }}
+                boundaryCount={1} 
                 onChange={(_, value) => {
                     setPage(value);
                     window.scroll(0, 450);

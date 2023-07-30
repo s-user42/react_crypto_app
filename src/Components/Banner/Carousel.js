@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Button } from "@material-ui/core";
 import axios from "axios";
 import { TrendingCoins } from "../../config/api";
 import { CryptoState } from "../../CryptoContext";
@@ -7,6 +7,7 @@ import AliceCarousel from "react-alice-carousel";
 
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import ErrorMessage from "../ErrorMessage";
 
 const useStyles = makeStyles((theme) => ({
     carousel: {
@@ -30,15 +31,29 @@ export function numberWithCommas(x) {
 }
 
 const Carousel = () => {
-    const [trending, setTerending] = useState([])
+    const [trending, setTerending] = useState([]);
+    const [error, setError] = useState(false);
+
     const classes = useStyles();
 
     const { currency, symbol } = CryptoState();
 
     const fetchTrendingCoins = async () => {
-        const { data } = await axios.get(TrendingCoins(currency));
-        setTerending(data);
-    }
+        try {
+            const { data } = await axios.get(TrendingCoins(currency));
+            setTerending(data);
+            setError(false)
+        } catch (error) {
+            setError(true);
+            if (error.response) {
+                console.error('Ошибка от сервера:', error.response.data);
+            } else if (error.request) {
+                console.error('Нет ответа от сервера:', error.request);
+            } else {
+                console.error('Ошибка:', error.message);
+            }
+        }
+    };
 
     useEffect(() => {
         fetchTrendingCoins()
@@ -77,6 +92,8 @@ const Carousel = () => {
             items: 4
         }
     }
+    
+    if (error) return <ErrorMessage />;
 
     return (
         <div className = {classes.carousel}>

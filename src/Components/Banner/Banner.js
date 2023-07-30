@@ -26,6 +26,11 @@ const useStyles = makeStyles((theme) => ({
       display: "flex",
       alignItems: "center",
     },
+    mainTag: {
+        "@media (max-width: 460px)": {
+            fontSize: 46
+        }
+    }
   }));
 
 const Banner = () => {
@@ -36,6 +41,7 @@ const Banner = () => {
                 <div className={classes.tagline}>
 
                     <Typography
+                    className={classes.mainTag}
                     variant="h2"
                     style={{
                         fontWeight: 'bold',

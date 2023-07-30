@@ -43,12 +43,23 @@ const CoinsTable = () => {
     
     const classes = useStyles();
     
+
     const fetchCoins = async () => {
-        setLoading(true);
-        const {data} = await axios.get(CoinList(currency));
-        setCoins(data);
-        setLoading(false);
-    }
+        try {
+            setLoading(true);
+            const {data} = await axios.get(CoinList(currency));
+            setCoins(data);
+            setLoading(false);
+        } catch (error) {
+            if (error.response) {
+                console.error('Ошибка от сервера:', error.response.data);
+            } else if (error.request) {
+                console.error('Нет ответа от сервера:', error.request);
+            } else {
+                console.error('Ошибка:', error.message);
+            }
+        }
+    };
 
     useEffect(() => {
         fetchCoins();
@@ -170,9 +181,8 @@ const CoinsTable = () => {
                 </TableContainer>
 
                 <Pagination
-                // count={(filterSearch()?.length / 10).toFixed(0)}
+                count={(filterSearch()?.length / 10).toFixed(0)}
                 className={classes.pagination}
-                count = {10}
                 style={{
                     padding: 20,
                     width: "100%",
